@@ -1,0 +1,33 @@
+<div class="headingDiv"> 
+  User CRUD Application
+</div>
+
+<div class="links">
+  <a class="recordListLink" [ngClass]="{active: true}" (click)="showUserList(1)" > Record List </a> |
+  <a class="recordListLink" [ngClass]="{active: false}" (click)="addUserForm()"> Add Record </a>
+</div>
+
+<div [hidden]="waitingMessage" class="waitingMessage">
+  {{waitingMessageDisplay}}
+</div>
+
+<div class="mainTable bottomBorder leftBorder rightBorder">
+    <div [hidden]="!waitingMessage" class="headerData topBorder">
+        <div class="tableData rightBorder"> Firstname </div>
+        <div class="tableData rightBorder"> Lastname </div>
+        <div class="tableData rightBorder"> Avtar </div> 
+        <div class="tableData"> Action </div>
+    </div>
+    
+    <div *ngFor="let data of displayDataArray" class="topBorder">
+      <div class="tableData rightBorder"> {{ data.first_name }} </div>
+      <div class="tableData rightBorder"> {{ data.last_name }} </div>
+      <div class="tableData rightBorder"> <img src="{{ data.avatar }}" alt="{{ data.avatar }}" width="50px" height="50px"> </div>
+      <div class="tableData"> Edit | Delete </div>
+    </div>
+</div>
+
+<div class="paginationButtonDiv">
+  <button class="paginationButton" [ngClass]="{active: i}" *ngFor="let data of ' '.repeat(totalPage).split(''), let i = index" (click)="showUserList(i+1)"> {{i+1}} </button>     
+  <span *ngIf = "fetchMessage" class="fetchMessageDiv"> {{fetchMessageDisplay}} </span>
+</div>

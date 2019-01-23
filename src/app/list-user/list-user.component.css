@@ -1,0 +1,84 @@
+.headingDiv{
+    margin: 0% 15% auto;
+    font-size: 25px;
+    font-style: initial;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.links{
+    padding-left: 15%;
+    margin: 2% auto; 
+}
+
+.recordListLink.active{
+    color: black;
+}
+
+.recordListLink{
+    color: gray;
+}
+
+.recordListLink:active{
+    color:gray;
+}
+
+.waitingMessage{
+    margin: 2% 15% auto;
+}
+
+.mainTable{
+    margin: 2% 15% auto;
+    text-align: left;
+    display: table;
+} 
+
+.headerData{
+    font-weight: bold;
+}
+
+.tableData{
+    width:200px;
+    height:50px;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: table-cell;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topBorder{
+    border-top: 1px solid grey;
+}
+
+.leftBorder{
+    border-left: 1px solid grey;
+}
+
+.rightBorder{
+    border-right: 1px solid grey;
+}
+
+.bottomBorder{
+    border-bottom: 1px solid grey;
+}
+
+.paginationButtonDiv{
+    margin: 1% 15% auto;
+}
+
+.paginationButton{
+    margin: 2px;
+    width: 4%;
+    height: 35px;
+    border-radius: 12%;
+    text-align: center;
+}
+
+.paginationButton.active{
+    background-color: darkgrey;
+    color: white;
+}
+
+.fetchMessageDiv{
+    font-size: 15px;
+}
