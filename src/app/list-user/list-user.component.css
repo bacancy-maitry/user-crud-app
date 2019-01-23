@@ -10,16 +10,13 @@
     margin: 2% auto; 
 }
 
-.recordListLink.active{
-    color: black;
-}
-
 .recordListLink{
     color: gray;
 }
 
-.recordListLink:active{
-    color:gray;
+.recordListLink.active{
+    color:black;
+    font-weight: bold;
 }
 
 .waitingMessage{
@@ -67,18 +64,67 @@
 }
 
 .paginationButton{
-    margin: 2px;
-    width: 4%;
+    margin-right: 5px;
+    width: 30px;
     height: 35px;
-    border-radius: 12%;
+    border-radius: 5px;
     text-align: center;
+    background-color: #ECF0F1;
+    border-style: hidden;
 }
 
 .paginationButton.active{
-    background-color: darkgrey;
+    background-color: #454545;
     color: white;
+}
+
+.paginationButton:hover{
+    background-color: lightgray;
 }
 
 .fetchMessageDiv{
     font-size: 15px;
+}
+
+.mainUserDiv{
+    /* border: 1px solid black; */
+    margin: 1% 15% auto;
+}
+
+.addUserHeading{
+    font-weight: bold;
+    margin-bottom: 4%;
+}
+
+.labelHeading{
+    margin-top: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.textBoxDiv{
+    margin-top: 1%;
+    width: 50%;
+    height: 35px;
+    border-radius: 5px;
+    border-style: groove;
+    text-indent: 10px;
+}
+
+.userFormButtonDiv{
+    margin-top: 1%;
+}
+
+.userFormButton{
+    width: 8%;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 10%;
+    border-style: hidden;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: whitesmoke;
+}
+
+.userFormButton:hover{
+    color: white;
+    background-color: gray;
 }
