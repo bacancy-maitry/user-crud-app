@@ -13,10 +13,10 @@ export class ListUserComponent implements OnInit {
   waitingMessage: boolean = false;
   displayUserList: boolean = true;
   fetchMessage: boolean = false;
+
   displayDataArray: Array<UserData> = [];
   allData: UserDataInterface;
   totalPages:Array<number> = [];
-  userForm: boolean = false;
 
   constructor(private http: HttpClient, private mainService: MainService) { }
 
@@ -29,29 +29,18 @@ export class ListUserComponent implements OnInit {
   showUserList(pageNo: number) {
     this.fetchMessage = true;
     this.mainService.getUserList(pageNo).subscribe(response => {
-      // console.log("Page 1 Data::" , response);
       if(response && response.data){
         this.allData = response;
-        // console.log("All Data::" , this.allData);
-
         this.displayDataArray = this.allData.data;
-        // console.log("Data Array:: ", this.displayDataArray);
 
         for(let i=0; i<this.allData.total_pages; i++){
           this.totalPages[i] = i + 1;
         }
+
         this.waitingMessage = true;
       }
       this.fetchMessage = false;
     });
     this.displayUserList = true;
-    this.userForm = false;
   }
-
-  //AddUser
-  addUserForm(){
-    this.displayUserList = false;
-    this.userForm = true;
-  }
-
 }

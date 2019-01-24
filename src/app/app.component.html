@@ -1,3 +1,12 @@
 <div class="mainDiv">
-    <app-list-user> </app-list-user>
+    <div class="headingDiv"> 
+        User CRUD Application
+    </div>
+        
+    <div class="links">
+        <a routerLink="/recordlist" class="recordListLink" [routerLinkActive]="['active']" > Record List </a> |
+        <a routerLink="/addrecord" class="recordListLink" [routerLinkActive]="['active']" > Add Record </a>
+    </div>
+    
+    <router-outlet></router-outlet>
 </div>

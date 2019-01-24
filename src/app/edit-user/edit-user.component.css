@@ -1,0 +1,42 @@
+.mainUserDiv{
+    /* border: 1px solid black; */
+    margin: 1% 15% auto;
+}
+
+.editUserHeading{
+    font-weight: bold;
+    margin-bottom: 4%;
+}
+
+.labelHeading{
+    margin-top: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.textBoxDiv{
+    margin-top: 1%;
+    width: 50%;
+    height: 35px;
+    border-radius: 5px;
+    border-style: groove;
+    text-indent: 10px;
+}
+
+.userFormButtonDiv{
+    margin-top: 2%;
+}
+
+.userFormButton{
+    width: 8%;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 10%;
+    border-style: hidden;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: whitesmoke;
+}
+
+.userFormButton.active{
+    color: white;
+    background-color: gray;
+}

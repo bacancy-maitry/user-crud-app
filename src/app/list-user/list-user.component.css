@@ -1,24 +1,3 @@
-.headingDiv{
-    margin: 0% 15% auto;
-    font-size: 25px;
-    font-style: initial;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.links{
-    padding-left: 15%;
-    margin: 2% auto; 
-}
-
-.recordListLink{
-    color: gray;
-}
-
-.recordListLink.active{
-    color:black;
-    font-weight: bold;
-}
-
 .waitingMessage{
     margin: 2% 15% auto;
 }
@@ -59,6 +38,10 @@
     border-bottom: 1px solid grey;
 }
 
+.routerLinks{
+    color: black;
+}
+
 .paginationButtonDiv{
     margin: 1% 15% auto;
 }
@@ -84,47 +67,4 @@
 
 .fetchMessageDiv{
     font-size: 15px;
-}
-
-.mainUserDiv{
-    /* border: 1px solid black; */
-    margin: 1% 15% auto;
-}
-
-.addUserHeading{
-    font-weight: bold;
-    margin-bottom: 4%;
-}
-
-.labelHeading{
-    margin-top: 2%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.textBoxDiv{
-    margin-top: 1%;
-    width: 50%;
-    height: 35px;
-    border-radius: 5px;
-    border-style: groove;
-    text-indent: 10px;
-}
-
-.userFormButtonDiv{
-    margin-top: 2%;
-}
-
-.userFormButton{
-    width: 8%;
-    height: 35px;
-    margin-right: 10px;
-    border-radius: 10%;
-    border-style: hidden;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: whitesmoke;
-}
-
-.userFormButton.active{
-    color: white;
-    background-color: gray;
 }
