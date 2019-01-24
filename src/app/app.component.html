@@ -4,8 +4,8 @@
     </div>
         
     <div class="links">
-        <a routerLink="/recordlist" class="recordListLink" [routerLinkActive]="['active']" > Record List </a> |
-        <a routerLink="/addrecord" class="recordListLink" [routerLinkActive]="['active']" > Add Record </a>
+        <a routerLink="/recordlist" class="recordListLink" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact: true}" > Record List </a> |
+        <a routerLink="/recordlist/new" class="recordListLink" [routerLinkActive]="['active']" > Add Record </a>
     </div>
     
     <router-outlet></router-outlet>

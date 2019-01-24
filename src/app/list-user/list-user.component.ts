@@ -32,7 +32,7 @@ export class ListUserComponent implements OnInit {
       if(response && response.data){
         this.allData = response;
         this.displayDataArray = this.allData.data;
-
+        console.log("Data Array:::", this.displayDataArray);
         for(let i=0; i<this.allData.total_pages; i++){
           this.totalPages[i] = i + 1;
         }

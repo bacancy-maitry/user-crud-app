@@ -14,13 +14,13 @@ const route: Routes = [
     path: 'recordlist', 
     component: ListUserComponent 
   },
-  { 
-    path: 'addrecord', 
-    component: AddUserComponent 
-  },
+  // { 
+  //   path: 'recordlist', 
+  //   component: AddUserComponent 
+  // },
   {
-    path: 'edituser',
-    component: EditUserComponent
+    path: 'recordlist/:id',
+    component: AddUserComponent
   }
   // { 
   //   path: '**', 
