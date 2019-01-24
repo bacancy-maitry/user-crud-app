@@ -10,20 +10,12 @@ import { UserDataInterface, UserData } from '../user-data-interface';
 })
 export class ListUserComponent implements OnInit {
 
-  waitingMessageDisplay = "Please Wait while we are getting user details...";
   waitingMessage: boolean = false;
-
   displayUserList: boolean = true;
-
-  fetchMessageDisplay = "Fetching Data...";
   fetchMessage: boolean = false;
-
   displayDataArray: Array<UserData> = [];
   allData: UserDataInterface;
-
   totalPages:Array<number> = [];
-  i:number;
-
   userForm: boolean = false;
 
   constructor(private http: HttpClient, private mainService: MainService) { }
@@ -45,8 +37,8 @@ export class ListUserComponent implements OnInit {
         this.displayDataArray = this.allData.data;
         // console.log("Data Array:: ", this.displayDataArray);
 
-        for(this.i=0; this.i<this.allData.total_pages; this.i++){
-          this.totalPages[this.i] = this.i + 1;
+        for(let i=0; i<this.allData.total_pages; i++){
+          this.totalPages[i] = i + 1;
         }
         this.waitingMessage = true;
       }
@@ -56,8 +48,8 @@ export class ListUserComponent implements OnInit {
     this.userForm = false;
   }
 
+  //AddUser
   addUserForm(){
-    // console.log("Add USer:::");
     this.displayUserList = false;
     this.userForm = true;
   }

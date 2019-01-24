@@ -8,7 +8,7 @@
 </div>
 
 <div [hidden]="waitingMessage" class="waitingMessage">
-  {{waitingMessageDisplay}}
+  Please Wait while we are getting user details...
 </div>
 
 <!-- Display User List Table -->
@@ -34,7 +34,7 @@
 
   <div class="paginationButtonDiv">
     <button class="paginationButton" [ngClass]="{active: pageNo==allData.page}" *ngFor="let pageNo of totalPages" (click)="showUserList(pageNo)"> {{pageNo}} </button>     
-    <span *ngIf = "fetchMessage" class="fetchMessageDiv"> {{fetchMessageDisplay}} </span>
+    <span *ngIf = "fetchMessage" class="fetchMessageDiv"> Fetching Data... </span>
   </div>
 </div>
 
