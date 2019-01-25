@@ -1,14 +1,17 @@
-<div class="mainUserDiv">
-  <div class="addUserHeading"> Add User </div>
+<div class="mainUserDiv" *ngIf="showData">
+  <div class="addUserHeading" *ngIf="!displayEditData"> Add User </div>
+  <div class="addUserHeading" *ngIf="displayEditData"> Edit User </div>
 
   <div class="labelHeading"> Name: </div>
-  <div> <input class="textBoxDiv" type="text" name="firstName" placeholder="Enter First Name"> </div>
+  <div> <input class="textBoxDiv" value="{{ showData.first_name }}" type="text" name="firstName" placeholder="Enter First Name"> </div>
 
   <div class="labelHeading"> Job: </div>
-  <div> <input class="textBoxDiv" type="text" name="jobTitle" placeholder="Enter Last Name"> </div>
+  <div> <input class="textBoxDiv" value="{{ showData.last_name }}"  type="text" name="jobTitle" placeholder="Enter Last Name"> </div>
 
-  <div class="labelHeading"> Avatar: </div>
-  <!-- <div> <img src="" alt="" /> </div> -->
+  <div *ngIf="displayEditData">
+    <div class="labelHeading"> Avatar: </div>
+    <div> <img src="{{ showData.avatar }}" alt="{{ showData.avatar }}" width="50px" height="50px"> </div>
+  </div>
 
   <div class="userFormButtonDiv">
     <button class="userFormButton" [ngClass]="{active: true}" > Submit </button> 

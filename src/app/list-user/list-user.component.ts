@@ -13,7 +13,7 @@ export class ListUserComponent implements OnInit {
   waitingMessage: boolean = false;
   displayUserList: boolean = true;
   fetchMessage: boolean = false;
-
+  
   displayDataArray: Array<UserData> = [];
   allData: UserDataInterface;
   totalPages:Array<number> = [];
@@ -32,7 +32,7 @@ export class ListUserComponent implements OnInit {
       if(response && response.data){
         this.allData = response;
         this.displayDataArray = this.allData.data;
-        console.log("Data Array:::", this.displayDataArray);
+        // console.log("Data Array:::", this.allData);
         for(let i=0; i<this.allData.total_pages; i++){
           this.totalPages[i] = i + 1;
         }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { UserDataInterface } from './user-data-interface';
+import { Observable, throwError, of } from 'rxjs';
+import { UserDataInterface, UserData } from './user-data-interface';
 import { HttpJsonParseError } from '@angular/common/http/src/response';
 import { catchError } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class MainService {
 
-  dataUrl = "https://reqres.in/";
+  private dataUrl = "https://reqres.in/";
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +24,12 @@ export class MainService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  private url1 = "https://reqres.in/api/users";
+
+  getUserDataById(id): Observable<UserDataInterface> {
+    return this.http.get<UserDataInterface>(this.dataUrl + "api/users/" + id);
   }
   
 }
