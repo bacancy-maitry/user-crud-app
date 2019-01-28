@@ -12,24 +12,29 @@ export class MainService {
 
   private dataUrl = "https://reqres.in/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  private handleError(error: HttpJsonParseError){
+  private handleError(error: HttpJsonParseError) {
     let errorMessage = "Please Check Internet Connection...";
     return throwError(errorMessage);
   }
 
-  getUserList(pageNo): Observable<UserDataInterface>{
-    return this.http.get<UserDataInterface>(this.dataUrl + "api/users?page=" + pageNo)
+  getUserList(pageNo): Observable<UserDataInterface> {
+    return this.httpClient.get<UserDataInterface>(this.dataUrl + "api/users?page=" + pageNo)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  private url1 = "https://reqres.in/api/users";
-
   getUserDataById(id): Observable<UserDataInterface> {
-    return this.http.get<UserDataInterface>(this.dataUrl + "api/users/" + id);
+    return this.httpClient.get<UserDataInterface>(this.dataUrl + "api/users/" + id);
   }
-  
+
+  deleteUserData(id: UserData | number): Observable<UserData> {
+    return this.httpClient.delete<UserData>(this.dataUrl + "api/users/" + id);
+  }
+
+  addUserData(user: UserData): Observable<UserData> {
+    return this.httpClient.post<UserData>(this.dataUrl + "api/users", user);
+  }
 }

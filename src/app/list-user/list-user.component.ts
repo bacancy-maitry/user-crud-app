@@ -13,27 +13,27 @@ export class ListUserComponent implements OnInit {
   waitingMessage: boolean = false;
   displayUserList: boolean = true;
   fetchMessage: boolean = false;
-  
+
   displayDataArray: Array<UserData> = [];
   allData: UserDataInterface;
-  totalPages:Array<number> = [];
+  totalPages: Array<number> = [];
 
   constructor(private http: HttpClient, private mainService: MainService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.showUserList(1);
-    this.fetchMessage = false; 
+    this.fetchMessage = false;
   }
 
   // ListUsers
   showUserList(pageNo: number) {
     this.fetchMessage = true;
     this.mainService.getUserList(pageNo).subscribe(response => {
-      if(response && response.data){
+      if (response && response.data) {
         this.allData = response;
         this.displayDataArray = this.allData.data;
         // console.log("Data Array:::", this.allData);
-        for(let i=0; i<this.allData.total_pages; i++){
+        for (let i = 0; i < this.allData.total_pages; i++) {
           this.totalPages[i] = i + 1;
         }
 
@@ -42,5 +42,21 @@ export class ListUserComponent implements OnInit {
       this.fetchMessage = false;
     });
     this.displayUserList = true;
+  }
+
+  //DeleteUser
+  deleteUserData(data) {
+    console.log("Delete User:::");
+
+    let confirmMessage = confirm("Are you sure you want to delete this user?");
+    if (confirmMessage == true) {
+      this.displayDataArray = this.displayDataArray.filter(response => response !== data);
+      this.mainService.deleteUserData(data).subscribe();
+      return true;
+    }
+    else {
+      return false;
+    }
+
   }
 }

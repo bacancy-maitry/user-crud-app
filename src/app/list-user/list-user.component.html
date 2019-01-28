@@ -5,26 +5,28 @@
 <!-- Display User List Table -->
 <div *ngIf="displayUserList">
   <div class="mainTable bottomBorder leftBorder rightBorder">
-      <div [hidden]="!waitingMessage" class="headerData topBorder">
-          <div class="tableData rightBorder"> Firstname </div>
-          <div class="tableData rightBorder"> Lastname </div>
-          <div class="tableData rightBorder"> Avtar </div> 
-          <div class="tableData"> Action </div>
+    <div [hidden]="!waitingMessage" class="headerData topBorder">
+      <div class="tableData rightBorder"> Firstname </div>
+      <div class="tableData rightBorder"> Lastname </div>
+      <div class="tableData rightBorder"> Avtar </div>
+      <div class="tableData"> Action </div>
+    </div>
+
+    <div *ngFor="let data of displayDataArray" class="topBorder">
+      <div class="tableData rightBorder"> {{ data.first_name }} </div>
+      <div class="tableData rightBorder"> {{ data.last_name }} </div>
+      <div class="tableData rightBorder"> <img src="{{ data.avatar }}" alt="{{ data.avatar }}" width="50px" height="50px">
       </div>
-      
-      <div *ngFor="let data of displayDataArray" class="topBorder">
-        <div class="tableData rightBorder"> {{ data.first_name }} </div>
-        <div class="tableData rightBorder"> {{ data.last_name }} </div>
-        <div class="tableData rightBorder"> <img src="{{ data.avatar }}" alt="{{ data.avatar }}" width="50px" height="50px"> </div>
-        <div class="tableData">
-          <a routerLink="/recordlist/{{ data.id }}" class="routerLinks" > Edit </a> |
-          <a class="deleteLink" class="routerLinks"> Delete </a>
-        </div>
+      <div class="tableData">
+        <a routerLink="/recordlist/{{ data.id }}" class="routerLinks"> Edit </a> |
+        <a routerLink="/" class="routerLinks" (click)="deleteUserData(data)"> Delete </a>
       </div>
+    </div>
   </div>
 
   <div class="paginationButtonDiv">
-    <button class="paginationButton" [ngClass]="{active: pageNo==allData.page}" *ngFor="let pageNo of totalPages" (click)="showUserList(pageNo)"> {{pageNo}} </button>     
-    <span *ngIf = "fetchMessage" class="fetchMessageDiv"> Fetching Data... </span>
+    <button class="paginationButton" [ngClass]="{active: pageNo==allData.page}" *ngFor="let pageNo of totalPages"
+      (click)="showUserList(pageNo)"> {{pageNo}} </button>
+    <span *ngIf="fetchMessage" class="fetchMessageDiv"> Fetching Data... </span>
   </div>
 </div>

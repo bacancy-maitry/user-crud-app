@@ -22,16 +22,21 @@
     text-indent: 10px;
 }
 
+.imageData{
+    margin-top: 1%; 
+}
+
 .userFormButtonDiv{
     margin-top: 2%;
 }
 
 .userFormButton{
-    width: 8%;
-    height: 35px;
+    width: auto;
+    height: 40px;
     margin-right: 10px;
     border-radius: 10%;
     border-style: hidden;
+    text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: whitesmoke;
 }

@@ -4,14 +4,14 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
 const route: Routes = [
-  { 
-    path: '',  
+  {
+    path: '',
     pathMatch: 'full',
-    redirectTo: 'recordlist' 
+    redirectTo: 'recordlist'
   },
-  { 
-    path: 'recordlist', 
-    component: ListUserComponent 
+  {
+    path: 'recordlist',
+    component: ListUserComponent
   },
   {
     path: 'recordlist/:id',
