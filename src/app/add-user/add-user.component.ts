@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../main.service';
 import { UserDataInterface, UserData } from '../user-data-interface';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-user',
@@ -11,10 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class AddUserComponent implements OnInit {
 
-  showData: UserData[];
+  showData: UserData;
   displayEditData: boolean = true;
   id: string;
   submitButton: string = "Submit";
+
+  userObj = {
+    id: null,
+    first_name: null,
+    last_name: null,
+    avatar: null,
+    a: null,
+  }
 
   constructor(private mainService: MainService, private activatedRoute: ActivatedRoute) { }
 
@@ -24,38 +31,47 @@ export class AddUserComponent implements OnInit {
 
   getUserData() {
     this.activatedRoute.params.subscribe(param => {
-      this.id = param['id'];
+      this.id = param['id']
 
-      if (this.id == "new") {
+      if (this.id === "new") {
         console.log("Add Mode");
         this.displayEditData = false;
-        this.showData = null;
+        this.showData = this.userObj;
       }
       else {
         console.log("Edit Mode");
+        this.showData = {
+          id: this.userObj.id,
+          first_name: this.userObj.first_name,
+          last_name: this.userObj.last_name,
+          avatar: this.userObj.avatar,
+        }
+
         this.mainService.getUserDataById(this.id)
-          .subscribe(response => this.showData = response.data);
+          .subscribe((response: any) => {
+            this.showData = response.data;
+            console.log("In ShowData", this.showData);
+          });
+
       }
     });
   }
 
-  addUserRecord(first_name: string, last_name: string) {
+  addUserRecord() {
     if (this.displayEditData == false) {
-      this.mainService.addUserData({ first_name, last_name } as UserData)
-        .subscribe(response => console.log("Record Add:::", response));
       this.submitButton = "Please Wait...";
+      this.mainService.addUserData(this.showData).subscribe(response => {
+        this.showData = response;
+        console.log("User Added", response);
+        this.submitButton = "Submit";
+      });
+      console.log("Add Record Condition");
     }
     else {
-      console.log("Hello");
+      console.log("Else Block Edit");
+      this.mainService.updateUserData(this.showData)
+        .subscribe(response => console.log("Edited Data", response));
     }
   }
-
-  // addUserRecord() {
-  //   //  this.userService.postUser(this.userEditObject).subscribe(postData => {
-  //   // this.userEditObject = postData;
-  //   this.mainService.addUserData().subscribe(response => {
-  //     console.log(response);
-  //   });
-  // }
 
 }

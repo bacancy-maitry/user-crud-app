@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MainService } from '../main.service';
 import { UserDataInterface, UserData } from '../user-data-interface';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-user',
@@ -10,6 +11,7 @@ import { UserDataInterface, UserData } from '../user-data-interface';
 })
 export class ListUserComponent implements OnInit {
 
+  // waitingMessageData: string = "Please Wait while we are getting user details...";
   waitingMessage: boolean = false;
   displayUserList: boolean = true;
   fetchMessage: boolean = false;
@@ -28,11 +30,11 @@ export class ListUserComponent implements OnInit {
   // ListUsers
   showUserList(pageNo: number) {
     this.fetchMessage = true;
+
     this.mainService.getUserList(pageNo).subscribe(response => {
       if (response && response.data) {
         this.allData = response;
         this.displayDataArray = this.allData.data;
-        // console.log("Data Array:::", this.allData);
         for (let i = 0; i < this.allData.total_pages; i++) {
           this.totalPages[i] = i + 1;
         }
@@ -40,7 +42,14 @@ export class ListUserComponent implements OnInit {
         this.waitingMessage = true;
       }
       this.fetchMessage = false;
-    });
+    },
+      error => {
+        console.error("Error!");
+        this.waitingMessage = true;
+        this.displayUserList = false;
+        // this.waitingMessageData = "Please Check your Internet connection...";
+      });
+
     this.displayUserList = true;
   }
 
