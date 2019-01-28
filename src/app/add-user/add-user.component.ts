@@ -20,7 +20,6 @@ export class AddUserComponent implements OnInit {
     first_name: null,
     last_name: null,
     avatar: null,
-    a: null,
   }
 
   constructor(private mainService: MainService, private activatedRoute: ActivatedRoute) { }
@@ -58,19 +57,19 @@ export class AddUserComponent implements OnInit {
   }
 
   addUserRecord() {
-    if (this.displayEditData == false) {
-      this.submitButton = "Please Wait...";
-      this.mainService.addUserData(this.showData).subscribe(response => {
-        this.showData = response;
-        console.log("User Added", response);
-        this.submitButton = "Submit";
-      });
+    if (this.id == "new") {
       console.log("Add Record Condition");
+      this.submitButton = "Please Wait...";
+      this.mainService.addUserData(this.showData)
+        .subscribe(response => {
+          console.log("User Response:::", response);
+          this.submitButton = "Submit";
+        });
     }
     else {
       console.log("Else Block Edit");
       this.mainService.updateUserData(this.showData)
-        .subscribe(response => console.log("Edited Data", response));
+        .subscribe(response => console.log("Edited Data:::", response));
     }
   }
 
