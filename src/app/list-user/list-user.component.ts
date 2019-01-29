@@ -17,23 +17,27 @@ export class ListUserComponent implements OnInit {
   allData: UserDataInterface;
   totalPages: Array<number> = [];
 
+  loading: boolean = false;
+
   constructor(private http: HttpClient, private mainService: MainService) { }
 
   ngOnInit() {
-    if (this.flagVar === false && this.allData === undefined) {
-      console.log("On Init");
+    // if (this.flagVar == false && this.allData == undefined) {
+      // console.log("On Init");
+      // this.flagVar = false;
       this.showUserList(1);
       // this.flagVar = true;
-    }
-    else {
-      console.log("Hello");
-    }
+    // }
+    // else {
+      // console.log("Hello");
+    // }
   }
 
   // ListUsers
   showUserList(pageNo: number) {
     console.log("Before Response:::", this.allData);
-    // this.flagVar = false;
+    this.flagVar = false;
+    this.loading = true;
     //Resoponse
     this.mainService.getUserList(pageNo).subscribe((response) => {
       if (response && response.data) {
@@ -44,6 +48,7 @@ export class ListUserComponent implements OnInit {
           this.totalPages[i] = i + 1;
         }
         this.flagVar = true;
+        this.loading = false;
       }
     },
       //Error Message
@@ -66,6 +71,6 @@ export class ListUserComponent implements OnInit {
     else {
       return false;
     }
-
   }
+
 }

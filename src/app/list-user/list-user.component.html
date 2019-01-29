@@ -1,12 +1,11 @@
-<div [hidden]="flagVar" class="waitingMessage">
+<div *ngIf="loading && !allData" class="waitingMessage">
   {{ waitingMessageData }}
 </div>
-
 <!-- Display User List Table -->
-<div>
+<div *ngIf="allData">
   <div class="mainTable bottomBorder leftBorder rightBorder">
 
-    <div *ngIf="flagVar" class="headerData topBorder">
+    <div class="headerData topBorder">
       <div class="tableData rightBorder"> Firstname </div>
       <div class="tableData rightBorder"> Lastname </div>
       <div class="tableData rightBorder"> Avtar </div>
@@ -29,7 +28,7 @@
   <div class="paginationButtonDiv">
     <button class="paginationButton" [ngClass]="{active: pageNo==allData.page}" *ngFor="let pageNo of totalPages"
       (click)="showUserList(pageNo)"> {{pageNo}} </button>
-    <span [hidden]="flagVar" class="fetchMessageDiv"> Fetching Data... </span>
+    <span *ngIf="loading" class="fetchMessageDiv"> Fetching Data... </span>
   </div>
 
 </div>
