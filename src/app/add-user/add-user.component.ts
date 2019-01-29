@@ -31,10 +31,10 @@ export class AddUserComponent implements OnInit {
   getUserData() {
     this.activatedRoute.params.subscribe(param => {
       this.id = param['id']
-
+      this.displayEditData = (this.id !== "new"); //
+      
       if (this.id === "new") {
         console.log("Add Mode");
-        this.displayEditData = false;
         this.showData = this.userObj;
       }
       else {

@@ -8,10 +8,11 @@ const route: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'recordlist'
+    
   },
   {
     path: 'recordlist',
-    component: ListUserComponent
+    component: ListUserComponent,
   },
   {
     path: 'recordlist/:id',

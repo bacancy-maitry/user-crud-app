@@ -36,6 +36,6 @@ export class MainService {
   }
 
   updateUserData(user: UserData): Observable<UserData> {
-    return this.httpClient.put<UserData>(this.dataUrl + "api/users/", user)
+    return this.httpClient.put<UserData>(this.dataUrl + "api/users/", user);
   }
 }

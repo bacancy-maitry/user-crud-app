@@ -11,12 +11,9 @@ import { catchError } from 'rxjs/operators';
 })
 export class ListUserComponent implements OnInit {
 
-  // waitingMessageData: string = "Please Wait while we are getting user details...";
-  waitingMessage: boolean = false;
-  displayUserList: boolean = true;
-  fetchMessage: boolean = false;
+  waitingMessageData: string = "Please Wait while we are getting user details...";
+  flagVar: boolean = false; // Flag Variable
 
-  displayDataArray: Array<UserData> = [];
   allData: UserDataInterface;
   totalPages: Array<number> = [];
 
@@ -24,42 +21,36 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit() {
     this.showUserList(1);
-    this.fetchMessage = false;
   }
 
   // ListUsers
   showUserList(pageNo: number) {
-    this.fetchMessage = true;
+    console.log("Before Response:::", this.allData);
 
-    this.mainService.getUserList(pageNo).subscribe(response => {
+    this.mainService.getUserList(pageNo).subscribe((response) => {
       if (response && response.data) {
         this.allData = response;
-        this.displayDataArray = this.allData.data;
+        console.log("After Response:::", this.allData);
+
         for (let i = 0; i < this.allData.total_pages; i++) {
           this.totalPages[i] = i + 1;
         }
-
-        this.waitingMessage = true;
+        this.flagVar = true;
       }
-      this.fetchMessage = false;
     },
-      error => {
+      (error) => {
         console.error("Error!");
-        this.waitingMessage = true;
-        this.displayUserList = false;
-        // this.waitingMessageData = "Please Check your Internet connection...";
+        this.flagVar = false;
+        this.waitingMessageData = "Please Check your Internet connection...";
       });
-
-    this.displayUserList = true;
   }
 
   //DeleteUser
   deleteUserData(data) {
     console.log("Delete User:::");
-
     let confirmMessage = confirm("Are you sure you want to delete this user?");
     if (confirmMessage == true) {
-      this.displayDataArray = this.displayDataArray.filter(response => response !== data);
+      this.allData.data = this.allData.data.filter(response => response !== data);
       this.mainService.deleteUserData(data).subscribe();
       return true;
     }
