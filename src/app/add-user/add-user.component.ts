@@ -13,7 +13,6 @@ export class AddUserComponent implements OnInit {
   showData: UserData;
   displayEditData: boolean = true;
   id: string;
-  submitButton: string = "Submit";
 
   userObj = {
     id: null,
@@ -31,8 +30,8 @@ export class AddUserComponent implements OnInit {
   getUserData() {
     this.activatedRoute.params.subscribe(param => {
       this.id = param['id']
-      this.displayEditData = (this.id !== "new"); //
-      
+      this.displayEditData == (this.id !== "new");
+  
       if (this.id === "new") {
         console.log("Add Mode");
         this.showData = this.userObj;
@@ -59,11 +58,9 @@ export class AddUserComponent implements OnInit {
   addUserRecord() {
     if (this.id == "new") {
       console.log("Add Record Condition");
-      this.submitButton = "Please Wait...";
       this.mainService.addUserData(this.showData)
         .subscribe(response => {
           console.log("User Response:::", response);
-          this.submitButton = "Submit";
         });
     }
     else {
