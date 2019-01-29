@@ -3,9 +3,10 @@
 </div>
 
 <!-- Display User List Table -->
-<div *ngIf="flagVar">
+<div>
   <div class="mainTable bottomBorder leftBorder rightBorder">
-    <div class="headerData topBorder">
+
+    <div *ngIf="flagVar" class="headerData topBorder">
       <div class="tableData rightBorder"> Firstname </div>
       <div class="tableData rightBorder"> Lastname </div>
       <div class="tableData rightBorder"> Avtar </div>
@@ -22,12 +23,13 @@
         <a routerLink="/" class="routerLinks" (click)="deleteUserData(data)"> Delete </a>
       </div>
     </div>
+
   </div>
 
   <div class="paginationButtonDiv">
     <button class="paginationButton" [ngClass]="{active: pageNo==allData.page}" *ngFor="let pageNo of totalPages"
       (click)="showUserList(pageNo)"> {{pageNo}} </button>
-      <span [hidden]="flagVar" class="fetchMessageDiv"> Fetching Data... </span>
+    <span [hidden]="flagVar" class="fetchMessageDiv"> Fetching Data... </span>
   </div>
 
 </div>

@@ -20,13 +20,21 @@ export class ListUserComponent implements OnInit {
   constructor(private http: HttpClient, private mainService: MainService) { }
 
   ngOnInit() {
-    this.showUserList(1);
+    if (this.flagVar === false && this.allData === undefined) {
+      console.log("On Init");
+      this.showUserList(1);
+      // this.flagVar = true;
+    }
+    else {
+      console.log("Hello");
+    }
   }
 
   // ListUsers
   showUserList(pageNo: number) {
     console.log("Before Response:::", this.allData);
-
+    // this.flagVar = false;
+    //Resoponse
     this.mainService.getUserList(pageNo).subscribe((response) => {
       if (response && response.data) {
         this.allData = response;
@@ -38,8 +46,9 @@ export class ListUserComponent implements OnInit {
         this.flagVar = true;
       }
     },
+      //Error Message
       (error) => {
-        console.error("Error!");
+        console.error("Error!", error);
         this.flagVar = false;
         this.waitingMessageData = "Please Check your Internet connection...";
       });

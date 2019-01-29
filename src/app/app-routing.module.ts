@@ -8,7 +8,6 @@ const route: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'recordlist'
-    
   },
   {
     path: 'recordlist',
