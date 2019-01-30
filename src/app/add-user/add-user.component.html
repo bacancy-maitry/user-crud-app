@@ -1,6 +1,6 @@
 <div class="mainUserDiv">
-  <div class="addUserHeading" *ngIf="!displayEditData"> Add User </div>
-  <div class="addUserHeading" *ngIf="displayEditData"> Edit User </div>
+  <div class="addUserHeading" *ngIf="!editDataShow && showData "> Add User </div>
+  <div class="addUserHeading" *ngIf="editDataShow && showData"> Edit User </div>
 
   <div class="labelHeading"> Name: </div>
   <div> <input class="textBoxDiv" [(ngModel)]="showData.first_name" type="text" name="firstName" placeholder="Enter First Name">
@@ -10,7 +10,7 @@
   <div> <input class="textBoxDiv" [(ngModel)]="showData.last_name" type="text" name="jobTitle" placeholder="Enter Last Name">
   </div>
 
-  <div *ngIf="displayEditData">
+  <div *ngIf="editDataShow && showData">
     <div class="labelHeading"> Avatar: </div>
     <div> <img class="imageData" src="{{ showData?.avatar }}" alt="{{ showData?.avatar }}" width="100px" height="100px" />
     </div>

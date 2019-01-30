@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../main.service';
 import { UserDataInterface, UserData } from '../user-data-interface';
 
@@ -10,8 +10,8 @@ import { UserDataInterface, UserData } from '../user-data-interface';
 })
 export class AddUserComponent implements OnInit {
 
+  editDataShow: boolean = false
   showData: UserData;
-  displayEditData: boolean = true;
   id: string;
 
   userObj = {
@@ -21,20 +21,21 @@ export class AddUserComponent implements OnInit {
     avatar: null,
   }
 
-  constructor(private mainService: MainService, private activatedRoute: ActivatedRoute) { }
+  constructor(private mainService: MainService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.getUserData();
   }
 
   getUserData() {
+    this.editDataShow = true;
     this.activatedRoute.params.subscribe(param => {
       this.id = param['id']
-      this.displayEditData == (this.id !== "new");
-  
+
       if (this.id === "new") {
         console.log("Add Mode");
         this.showData = this.userObj;
+        this.editDataShow = false;
       }
       else {
         console.log("Edit Mode");
@@ -44,13 +45,12 @@ export class AddUserComponent implements OnInit {
           last_name: this.userObj.last_name,
           avatar: this.userObj.avatar,
         }
-
+        this.editDataShow = true;
         this.mainService.getUserDataById(this.id)
           .subscribe((response: any) => {
             this.showData = response.data;
             console.log("In ShowData", this.showData);
           });
-
       }
     });
   }
@@ -61,12 +61,16 @@ export class AddUserComponent implements OnInit {
       this.mainService.addUserData(this.showData)
         .subscribe(response => {
           console.log("User Response:::", response);
+          this.router.navigateByUrl("/recordlist");
         });
     }
     else {
       console.log("Else Block Edit");
       this.mainService.updateUserData(this.showData)
-        .subscribe(response => console.log("Edited Data:::", response));
+        .subscribe(response => {
+          console.log("Edited Data:::", response);
+          this.router.navigateByUrl("/recordlist");
+        });
     }
   }
 

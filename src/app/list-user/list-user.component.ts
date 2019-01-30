@@ -12,8 +12,6 @@ import { catchError } from 'rxjs/operators';
 export class ListUserComponent implements OnInit {
 
   waitingMessageData: string = "Please Wait while we are getting user details...";
-  flagVar: boolean = false; // Flag Variable
-
   allData: UserDataInterface;
   totalPages: Array<number> = [];
 
