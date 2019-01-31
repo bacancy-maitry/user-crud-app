@@ -1,6 +1,17 @@
 <div class="mainUserDiv">
-  <div class="addUserHeading" *ngIf="!editDataShow && showData "> Add User </div>
-  <div class="addUserHeading" *ngIf="editDataShow && showData"> Edit User </div>
+
+  <ng-container *ngIf="id=='new'; then addUser; else editUser"> </ng-container>
+  <ng-template #addUser>
+    <div class="addUserHeading">
+      Add User
+    </div>
+  </ng-template>
+
+  <ng-template #editUser>
+    <div class="addUserHeading">
+      Edit User
+    </div>
+  </ng-template>
 
   <div class="labelHeading"> Name: </div>
   <div> <input class="textBoxDiv" [(ngModel)]="showData.first_name" type="text" name="firstName" placeholder="Enter First Name">
@@ -10,14 +21,17 @@
   <div> <input class="textBoxDiv" [(ngModel)]="showData.last_name" type="text" name="jobTitle" placeholder="Enter Last Name">
   </div>
 
-  <div *ngIf="editDataShow && showData">
+  <div *ngIf="id!=='new'">
     <div class="labelHeading"> Avatar: </div>
     <div> <img class="imageData" src="{{ showData?.avatar }}" alt="{{ showData?.avatar }}" width="100px" height="100px" />
     </div>
   </div>
 
   <div class="userFormButtonDiv">
-    <button class="userFormButton" [ngClass]="{active: true}" (click)="addUserRecord()"> Submit </button>
+    <button class="userFormButton" [ngClass]="{active: true}" (click)="addEditUserRecord()">
+      <span *ngIf="!pleaseWait"> Submit </span>
+      <span *ngIf="pleaseWait"> Please Wait.... </span>
+    </button>
     <button class="userFormButton" routerLink="/recordlist"> Cancel </button>
   </div>
 </div>
